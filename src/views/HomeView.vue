@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <Qrcode/>
+  <GetQrcode/>
     <div class="btn-wrap">
       <a class="btn-hello" href="hellobike://hellobike.com/scan_qr">
         <img src="@/assets/hello_icon.png">
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import Qrcode from '@/components/Qrcode.vue';
+import GetQrcode from '@/components/GetQrcode.vue';
 
 </script>
 
