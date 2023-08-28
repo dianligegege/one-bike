@@ -1,8 +1,9 @@
 <template>
   <div class="video-wrap">
     <video ref="videoRef" playsinline class="video-box"></video>
-    <canvas ref="canvasLneRef" class="canvas-box"></canvas>
-    <div class="focus-box"></div>
+    <div class="line-wrap">
+      <div class="line"></div>
+    </div>
     <button @click="openCamera">开启摄像头</button>
   </div>
 </template>
@@ -10,8 +11,10 @@
 <script setup>
 import jsQR from "jsqr";
 import {
-  computed, nextTick, reactive,
-  onMounted, onUnmounted, ref, watch,
+  nextTick,
+  reactive,
+  onMounted,
+  ref,
 } from 'vue';
 
 const linkMap = {
@@ -21,7 +24,6 @@ const linkMap = {
 };
 
 const videoRef = ref(null);
-const canvasLneRef= ref(null);
 
 const state = reactive({
   video: null,
@@ -58,63 +60,21 @@ const handleVideo = () => {
     inversionAttempts: "dontInvert",
   });
 
-  // if (code) {
-  //   drawLine(
-  //     code.location.topLeftCorner,
-  //     code.location.topRightCorner,
-  //     "#FF3B58"
-  //   );
-  //   drawLine(
-  //     code.location.topRightCorner,
-  //     code.location.bottomRightCorner,
-  //     "#FF3B58"
-  //   );
-  //   drawLine(
-  //     code.location.bottomRightCorner,
-  //     code.location.bottomLeftCorner,
-  //     "#FF3B58"
-  //   );
-  //   drawLine(
-  //     code.location.bottomLeftCorner,
-  //     code.location.topLeftCorner,
-  //     "#FF3B58"
-  //   );
-  //   if (code.data) {
-  //     getData(code.data);
-  //   }
-  // }
-
   if (code && code.data) {
     getData(code.data);
-    // return;
+    return;
   }
 
   requestAnimationFrame(handleVideo);
 };
 
 const getData = (data) => {
-  // alert(data);
-  // const host = 
-  console.log(data);
-  // if (Object.keys(linkMap).includes())
   Object.entries(linkMap).forEach(([key, value]) => {
     if (data.includes(key)) {
       window.location = value;
     }
   })
 
-}
-
-const drawLine = (begin, end, color) => {
-  if (!state.cline2d) {
-    state.cline2d = canvasLneRef.value.getContext('2d');
-  }
-  state.cline2d.beginPath();
-  state.cline2d.moveTo(begin.x, begin.y);
-  state.cline2d.lineTo(end.x, end.y);
-  state.cline2d.lineWidth = 4;
-  state.cline2d.strokeStyle = color;
-  state.cline2d.stroke();
 }
 
 const openCamera = () => {
@@ -185,64 +145,47 @@ onMounted(() => {
         transparent);
     background-size: 3rem 3rem;
     background-position: -1rem -1rem;
-    z-index: 10;
+    z-index: 1;
     background-color: #1110;
   }
 
-  .focus-box {
+  .line-wrap {
     position: absolute;
-    width: 60vw;
-    height: 60vw;
-    top: 110px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    border: 0.1rem solid rgba(0, 255, 51, 0.2);
-    z-index: 11;
-    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(194, 190, 190, 0.8);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
 
-    .box:after,
-    .box:before {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 3vw;
-      height: 3vw;
-      z-index: 12;
-      border: 0.2rem solid transparent;
+    .line {
+      height: calc(100% - 2px);
+      width: 100%;
+      background: linear-gradient(179deg, rgba(0, 255, 51, 0) 43%, #a4ebb2a6 211%);
+      border-bottom: 1px solid #a4ebb2a6;
+      transform: translateY(-100%);
+      animation: radar-beam 2s infinite alternate;
+      animation-timing-function: cubic-bezier(0.53, 0, 0.43, 0.99);
+      animation-delay: 1.4s;
     }
 
-    .box:after,
-    .box:before {
-      top: 0;
-      border-top-color: #baffc8;
-    }
+    @keyframes radar-beam {
+      0% {
+        transform: translateY(-100%);
+      }
 
-    .box:before {
-      left: 0;
-      border-left-color: #baffc8;
-    }
-
-    .box:after {
-      right: 0;
-      border-right-color: #baffc8;
+      100% {
+        transform: translateY(0);
+      }
     }
   }
-
   button {
     position: absolute;
     top: 50px;
     left: 50px;
-  }
-
-  .canvas-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 11;
-    background: transparent;
-    height: 100vh;
-    width: 100vw;
-    pointer-events: none;
   }
 }
 </style>
