@@ -26,11 +26,6 @@ import Qrcode from '@/components/Qrcode.vue';
 </script>
 
 <style lang="scss" scoped>
-// main {
-//   padding: 1rem;
-//   background-color: #dcdcdc70;
-//   // min-height: 100vh;
-// }
 .btn-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -39,6 +34,7 @@ import Qrcode from '@/components/Qrcode.vue';
   bottom: 100px;
   width: 100vw;
   margin: 0 auto;
+  z-index: 3;
 
   a {
     white-space: nowrap;
