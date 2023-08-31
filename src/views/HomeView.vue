@@ -1,28 +1,25 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-  <GetQrcode/>
-    <div class="btn-wrap">
-      <a class="btn-hello" href="hellobike://hellobike.com/scan_qr">
-        <img src="@/assets/hello_icon.png">
-        哈啰
-      </a>
-      <a class="btn-meituan" href="imeituan://www.meituan.com/scanQRCode">
-        <img src="@/assets/meituan_icon.png">
-        美团
-      </a>
-      <a class="btn-dd" href="blackhorse://qrscan">
-        <img src="@/assets/dd_icon.ico">
-        青桔
-      </a>
-      <!-- <a href="imeituan://www.meituan.com/bike/scan?url=scanqrcode">美团单车</a> -->
-    </div>
+  <GetQrcode />
+  <div class="btn-wrap">
+    <a class="btn-hello" href="hellobike://hellobike.com/scan_qr">
+      <img src="@/assets/hello_icon.png" />
+      哈啰
+    </a>
+    <a class="btn-meituan" href="imeituan://www.meituan.com/scanQRCode">
+      <img src="@/assets/meituan_icon.png" />
+      美团
+    </a>
+    <a class="btn-dd" href="blackhorse://qrscan">
+      <img src="@/assets/dd_icon.ico" />
+      青桔
+    </a>
+  </div>
 </template>
 
 <script setup>
-import GetQrcode from '@/components/GetQrcode.vue';
-
+import GetQrcode from '@/components/GetQrcode.vue'
 </script>
 
 <style lang="scss" scoped>
@@ -62,12 +59,11 @@ import GetQrcode from '@/components/GetQrcode.vue';
     &.btn-hello {
       color: #0096ff;
       border-color: #0096ff;
-      box-shadow: inset 0 0 0 0 #725AC1;
+      box-shadow: inset 0 0 0 0 #725ac1;
 
       img {
         width: 26px;
       }
-      
     }
 
     &.btn-meituan {
