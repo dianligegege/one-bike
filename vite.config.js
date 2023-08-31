@@ -8,37 +8,38 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 export default defineConfig({
   plugins: [
     mkcert({
-      // force: true,
-      // autoUpgrade: true,
+      force: true,
+      autoUpgrade: true,
     }),
     vue(),
     vueJsx(),
-    // VitePWA({
-    //   registerType: 'autoUpdate',
-    //   devOptions: {
-    //     enabled: true,
-    //     type: 'module',
-    //     navigateFallback: 'index.html',
-    //     suppressWarnings: true,
-    //   },
-    //   injectRegister: 'auto',
-    //   workbox: {
-    //     globPatterns: ['**/*.{js,css,html,ico,png,svg}']
-    //   },
-    //   manifest: {
-    //     name: 'One Bike',
-    //     short_name: 'one bike',
-    //     description: 'one app for all bike',
-    //     theme_color: '#ffffff',
-    //     icons: [
-    //       {
-    //         src: 'src/assets/icon.png',
-    //         sizes: '144x144',
-    //         type: 'image/png'
-    //       },
-    //     ]
-    //   }
-    // }),
+    VitePWA({
+      registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true,
+        type: 'module',
+        navigateFallback: 'index.html',
+        suppressWarnings: true,
+      },
+      injectRegister: 'auto',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+      },
+      manifest: {
+        name: 'One Bike',
+        short_name: 'one bike',
+        description: 'one app for all bike',
+        theme_color: '#ffffff',
+        display: 'fullscreen',
+        icons: [
+          {
+            src: 'icon.png',
+            sizes: '150x150',
+            type: 'image/png'
+          },
+        ]
+      }
+    }),
   ],
   resolve: {
     alias: {

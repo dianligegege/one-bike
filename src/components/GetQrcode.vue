@@ -156,6 +156,7 @@ onMounted(() => {
     pointer-events: none;
     z-index: 1;
     overflow: hidden;
+    background-color: #ccc;
 
     .line {
       height: calc(100% - 2px);
@@ -163,7 +164,7 @@ onMounted(() => {
       background: linear-gradient(179deg, rgba(0, 255, 51, 0) 43%, #a4ebb2a6 211%);
       border-bottom: 1px solid #a4ebb2a6;
       transform: translateY(-100%);
-      animation: radar-beam 4s infinite normal;
+      // animation: radar-beam 4s infinite normal;
       animation-timing-function: linear;
       animation-delay: 1s;
     }
