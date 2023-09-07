@@ -2,7 +2,7 @@
 
 <template>
   <GetQrcode />
-  <div class="btn-wrap">
+  <!-- <div class="btn-wrap">
     <a class="btn-hello" href="hellobike://hellobike.com/scan_qr">
       <img src="@/assets/hello_icon.png" />
       哈啰
@@ -15,7 +15,7 @@
       <img src="@/assets/dd_icon.ico" />
       青桔
     </a>
-  </div>
+  </div> -->
 </template>
 
 <script setup>
