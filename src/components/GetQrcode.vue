@@ -26,6 +26,7 @@ import { nextTick, reactive, onMounted, ref } from 'vue'
 const linkMap = {
   didi: 'blackhorse://qrscan',
   hello: 'hellobike://hellobike.com/scan_qr',
+  c3x: 'hellobike://hellobike.com/scan_qr',
   mobike: 'imeituan://www.meituan.com/scanQRCode'
 }
 
@@ -67,11 +68,16 @@ const handleVideo = () => {
 }
 
 const getData = (data) => {
+  let isEnd = false
   Object.entries(linkMap).forEach(([key, value]) => {
     if (data.includes(key)) {
       window.location = value
+      isEnd = true
     }
   })
+  if (!isEnd && /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?$/.test(data)) {
+    window.location.href = data
+  }
 }
 
 const openCamera = () => {
