@@ -5,8 +5,16 @@
       <div class="line"></div>
     </div>
     <button @click="openCamera">开启摄像头</button>
-    <div v-if="state.isUseTorch" class="track" @click="openTrack">
-      {{ state.trackStatus ? '关闭闪光灯' : '打开闪光灯' }}
+    <div
+      v-if="state.isUseTorch"
+      class="track"
+      :class="{
+        'is-open': state.trackStatus
+      }"
+      @click="openTrack"
+    >
+      <img v-if="state.trackStatus" src="@/assets/light_open.svg" />
+      <img v-else src="@/assets/light_close.svg" />
     </div>
   </div>
 </template>
@@ -30,7 +38,7 @@ const state = reactive({
   c: null,
   canvas2d: null,
   cline2d: null,
-  trackStatus: false,
+  trackStatus: true,
   track: null,
   isUseTorch: true
 })
@@ -80,7 +88,7 @@ const openCamera = () => {
     videoRef.value.setAttribute('playsinline', true)
     videoRef.value.play()
     window.requestAnimationFrame(handleVideo)
-    ;[state.track] = stream.getVideoTracks()
+    state.track = stream.getVideoTracks()[0]
 
     setTimeout(() => {
       state.isUseTorch = state.track.getCapabilities().torch || null
@@ -89,10 +97,16 @@ const openCamera = () => {
 }
 
 const openTrack = () => {
-  state.trackStatus = !state.trackStatus
-  state.track.applyConstraints({
-    advanced: [{ torch: state.trackStatus }]
-  })
+  state.track
+    .applyConstraints({
+      advanced: [{ torch: state.trackStatus }]
+    })
+    .then(() => {
+      state.trackStatus = !state.trackStatus
+    })
+    .catch((err) => {
+      alert(err)
+    })
 }
 
 onMounted(() => {
@@ -160,9 +174,25 @@ onMounted(() => {
 
   .track {
     position: absolute;
-    bottom: 200px;
+    bottom: 300px;
     left: 50%;
     transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: #c8c7c7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.is-open {
+      background-color: #e4e3e3;
+    }
+
+    img {
+      width: 28px;
+      height: 28px;
+    }
   }
 
   button {
