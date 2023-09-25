@@ -4,7 +4,7 @@
     <div class="line-wrap">
       <div class="line"></div>
     </div>
-    <button @click="openCamera">开启摄像头</button>
+    <!-- <button @click="openCamera">开启摄像头</button> -->
     <div
       v-if="state.isUseTorch"
       class="track"
@@ -125,6 +125,7 @@ onMounted(() => {
     state.c.width = state.canvasWidth
     state.c.height = state.canvasHeight
     state.c.style.width = '100%'
+    openCamera()
   })
 })
 </script>
