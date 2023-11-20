@@ -7,10 +7,10 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
   plugins: [
-    mkcert({
-      force: true,
-      autoUpgrade: true,
-    }),
+    // mkcert({
+    //   force: true,
+    //   autoUpgrade: true,
+    // }),
     vue(),
     vueJsx(),
     VitePWA({
@@ -48,6 +48,9 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    https: true,
+    https: {
+      key: 'key.pem',
+      cert: 'cert.pem',
+    },
   }
 })
