@@ -1,20 +1,20 @@
-<script setup></script>
-
 <template>
-  <GetQrcode />
-  <div class="btn-wrap">
-    <a class="btn-hello" href="hellobike://hellobike.com/scan_qr">
-      <img src="@/assets/hello_icon.png" />
-      哈啰
-    </a>
-    <a class="btn-meituan" href="imeituan://www.meituan.com/scanQRCode">
-      <img src="@/assets/meituan_icon.png" />
-      美团
-    </a>
-    <a class="btn-dd" href="blackhorse://qrscan">
-      <img src="@/assets/dd_icon.ico" />
-      青桔
-    </a>
+  <div class="page-wrap">
+    <GetQrcode />
+    <div class="btn-wrap">
+      <a class="btn-hello" href="hellobike://hellobike.com/scan_qr">
+        <img src="@/assets/hello_icon.png" />
+        哈啰
+      </a>
+      <a class="btn-meituan" href="imeituan://www.meituan.com/scanQRCode">
+        <img src="@/assets/meituan_icon.png" />
+        美团
+      </a>
+      <a class="btn-dd" href="blackhorse://qrscan">
+        <img src="@/assets/dd_icon.ico" />
+        青桔
+      </a>
+    </div>
   </div>
 </template>
 
@@ -23,6 +23,11 @@ import GetQrcode from '@/components/GetQrcode.vue'
 </script>
 
 <style lang="scss" scoped>
+.page-wrap {
+  overflow: hidden;
+  height: 100%;
+}
+
 .btn-wrap {
   display: flex;
   flex-wrap: wrap;

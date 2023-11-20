@@ -4,7 +4,6 @@
     <div class="line-wrap">
       <div class="line"></div>
     </div>
-    <!-- <button @click="openCamera">开启摄像头</button> -->
     <div
       v-if="state.isUseTorch"
       class="track"
@@ -99,6 +98,8 @@ const openCamera = () => {
     setTimeout(() => {
       state.isUseTorch = state.track.getCapabilities().torch || null
     }, 500)
+  }).catch((err) => {
+    console.log(err);
   })
 }
 
@@ -133,7 +134,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .video-wrap {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   position: relative;
 
   .video-box {
