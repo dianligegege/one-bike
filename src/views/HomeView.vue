@@ -11,7 +11,7 @@
         美团
       </a>
       <a class="btn-dd" href="blackhorse://qrscan">
-        <img src="@/assets/dd_icon.ico" />
+        <img src="@/assets/dd_icon.png" />
         青桔
       </a>
     </div>
@@ -81,6 +81,10 @@ import GetQrcode from '@/components/GetQrcode.vue'
       color: #33c6b1;
       border-color: #33c6b1;
       box-shadow: inset 0 0 0 0 #33c6b1;
+
+      img {
+        border-radius: 18%;
+      }
     }
   }
 }
