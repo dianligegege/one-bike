@@ -33,8 +33,28 @@ export default defineConfig({
         display: 'fullscreen',
         icons: [
           {
-            src: 'icon.png',
-            sizes: '150x150',
+            src: 'logo_128.png',
+            sizes: '128x128',
+            type: 'image/png'
+          },
+          {
+            src: 'logo_144.png',
+            sizes: '144x144',
+            type: 'image/png'
+          },
+          {
+            src: 'logo_192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'logo_256.png',
+            sizes: '256x256',
+            type: 'image/png'
+          },
+          {
+            src: 'logo_512.png',
+            sizes: '512x512',
             type: 'image/png'
           },
         ]
@@ -47,7 +67,7 @@ export default defineConfig({
     }
   },
   server: {
-    host: '0.0.0.0',
+    host: 'localhost',
     https: {
       key: 'key.pem',
       cert: 'cert.pem',
